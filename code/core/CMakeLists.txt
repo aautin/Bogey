@@ -1,0 +1,2 @@
+﻿set(HDRS ${HDRS} ${CMAKE_CURRENT_LIST_DIR})
+set(SRCS ${SRCS} ${CMAKE_CURRENT_LIST_DIR}/utils.cpp)
