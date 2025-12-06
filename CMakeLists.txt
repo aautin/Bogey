@@ -1,0 +1,10 @@
+﻿cmake_minimum_required(VERSION 3.10)
+project(Bogey)
+
+add_subdirectory(code/core)
+add_subdirectory(code/main)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_CONFIGURATION_TYPES)
+	include(CTest)
+	find_package(GTest REQUIRED)
+	add_subdirectory(code/tests)
+endif()
