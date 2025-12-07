@@ -1,6 +1,4 @@
-﻿project(${PROJECT_NAME}Main)
-
-add_executable(${PROJECT_NAME})
+﻿add_executable(${PROJECT_NAME})
 
 set(SRCS main.cpp)
 set(HDRS)
