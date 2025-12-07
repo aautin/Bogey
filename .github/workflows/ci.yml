@@ -35,9 +35,9 @@ jobs:
       - name: Conan install
         run: conan install . --build=missing --settings build_type=Debug --settings compiler.cppstd=17
       - name: Configure
-        run: cmake --preset conan-debug
+        run: cmake --preset conan-default
       - name: Build
-        run: cmake --build --preset conan-debug
+        run: cmake --build --preset conan-default
       - name: Run tests
         run: |
           cd build/Debug
