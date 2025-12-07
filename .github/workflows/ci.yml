@@ -37,9 +37,10 @@ jobs:
       - name: Configure
         run: cmake --preset conan-default
       - name: Build
-        run: cmake --build --preset conan-default
+        run: cmake --build --preset conan-debug
       - name: Run tests
         run: |
+          ls
           ls build
           cd build
           ctest --output-on-failure
