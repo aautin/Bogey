@@ -1,0 +1,58 @@
+name: CI
+
+on: push
+
+jobs:
+  test-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Conan
+        run: pip install conan
+      - name: Conan install
+        run: conan install . --build=missing
+      - name: Configure
+        run: cmake --preset linux-debug
+      - name: Build
+        run: cmake --build --preset linux-debug
+      - name: Run tests
+        run: |
+          cd out/build/linux-debug
+          ctest --output-on-failure
+
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Conan
+        run: pip install conan
+      - name: Conan install
+        run: conan install . --build=missing
+      - name: Configure
+        run: cmake --preset x64-debug
+      - name: Build
+        run: cmake --build --preset x64-debug
+      - name: Run tests
+        run: |
+          cd out/build/x64-debug
+          ctest --output-on-failure
+
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Conan
+        run: pip install conan
+      - name: Conan install
+        run: conan install . --build=missing
+      - name: Configure
+        run: cmake --preset macos-debug
+      - name: Build
+        run: cmake --build --preset macos-debug
+      - name: Run tests
+        run: |
+          cd out/build/macos-debug
+          ctest --output-on-failure
