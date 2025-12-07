@@ -47,27 +47,8 @@ jobs:
           name: linux-exe
           path: out/build/linux-debug/Bogey
 
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install Conan
-        run: pip install conan
-      - name: Conan install
-        run: conan install . --build=missing
-      - name: Configure and Build
-        run: |
-          cmake --preset macos-debug -DCMAKE_BUILD_TYPE=Release
-          cmake --build --preset macos-debug
-      - name: Upload macOS Executable
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-exe
-          path: out/build/macos-debug/Bogey
-
   release:
-    needs: [build-windows, build-linux, build-macos]
+    needs: [build-windows, build-linux]
     runs-on: ubuntu-latest
     steps:
       - name: Download Windows Executable
@@ -79,11 +60,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: linux-exe
-          path: artifacts/
-      - name: Download macOS Executable
-        uses: actions/download-artifact@v4
-        with:
-          name: macos-exe
           path: artifacts/
       - name: Create Release
         uses: softprops/action-gh-release@v1

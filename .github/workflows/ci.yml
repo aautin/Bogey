@@ -40,29 +40,5 @@ jobs:
         run: cmake --build --preset conan-debug
       - name: Run tests
         run: |
-          ls build/
           cd build
-          ctest --output-on-failure
-          ls Debug
-          cd Debug
-          ctest --output-on-failure
-
-  test-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install Conan
-        run: pip install conan
-      - name: Conan profile detect
-        run: conan profile detect
-      - name: Conan install
-        run: conan install . --build=missing --settings build_type=Debug --settings compiler.cppstd=17
-      - name: Configure
-        run: cmake --preset conan-debug
-      - name: Build
-        run: cmake --build --preset conan-debug
-      - name: Run tests
-        run: |
-          cd build/Debug
           ctest --output-on-failure
