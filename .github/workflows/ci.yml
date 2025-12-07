@@ -40,9 +40,8 @@ jobs:
         run: cmake --build --preset conan-debug
       - name: Run tests
         run: |
-          ls build/x64
-          ls build
-          cd build
+          ls build/x64/Debug
+          cd build/x64/Debug
           ctest --output-on-failure
 
   test-macos:
