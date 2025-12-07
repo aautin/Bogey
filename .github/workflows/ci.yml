@@ -15,12 +15,12 @@ jobs:
       - name: Conan install
         run: conan install . --build=missing
       - name: Configure
-        run: cmake --preset linux-debug
+        run: cmake --preset conan-debug
       - name: Build
-        run: cmake --build --preset linux-debug
+        run: cmake --build --preset conan-debug
       - name: Run tests
         run: |
-          cd out/build/linux-debug
+          cd build/Debug
           ctest --output-on-failure
 
   test-windows:
@@ -35,12 +35,12 @@ jobs:
       - name: Conan install
         run: conan install . --build=missing
       - name: Configure
-        run: cmake --preset x64-debug
+        run: cmake --preset conan-debug
       - name: Build
-        run: cmake --build --preset x64-debug
+        run: cmake --build --preset conan-debug
       - name: Run tests
         run: |
-          cd out/build/x64-debug
+          cd build/Debug
           ctest --output-on-failure
 
   test-macos:
@@ -55,10 +55,10 @@ jobs:
       - name: Conan install
         run: conan install . --build=missing
       - name: Configure
-        run: cmake --preset macos-debug
+        run: cmake --preset conan-debug
       - name: Build
-        run: cmake --build --preset macos-debug
+        run: cmake --build --preset conan-debug
       - name: Run tests
         run: |
-          cd out/build/macos-debug
+          cd build/Debug
           ctest --output-on-failure
